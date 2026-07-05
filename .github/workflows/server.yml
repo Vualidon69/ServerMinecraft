@@ -1,0 +1,29 @@
+name: Minecraft Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Download Paper
+        run: |
+          wget -O server.jar https://api.papermc.io/v2/projects/paper/versions/1.21.8/builds/1/downloads/paper-1.21.8-1.jar
+
+      - name: Accept EULA
+        run: echo "eula=true" > eula.txt
+
+      - name: Start Server
+        run: |
+          java -Xms2G -Xmx6G -jar server.jar nogui
