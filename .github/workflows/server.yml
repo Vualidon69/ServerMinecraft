@@ -17,12 +17,17 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Download Paper
+      - name: Download Paper 1.20.4
         run: |
-          wget -O server.jar https://api.papermc.io/v2/projects/paper/versions/1.21.8/builds/1/downloads/paper-1.21.8-1.jar
+          curl -L https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/499/downloads/paper-1.20.4-499.jar -o server.jar
 
       - name: Accept EULA
-        run: echo "eula=true" > eula.txt
+        run: |
+          echo "eula=true" > eula.txt
+
+      - name: Configure Server
+        run: |
+          echo "online-mode=false" > server.properties
 
       - name: Start Server
         run: |
