@@ -58,3 +58,9 @@ jobs:
       - name: Start Server
         run: |
           java -Xms2G -Xmx6G -jar server.jar nogui
+      - name: Check listening
+        run: |
+          java -Xms2G -Xmx6G -jar server.jar nogui &
+          sleep 20
+          sudo ss -ltnp | grep 25565
+          wait
