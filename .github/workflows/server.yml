@@ -17,9 +17,11 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Download Paper 1.20.4
-        run: |
-          curl -L https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/499/downloads/paper-1.20.4-499.jar -o server.jar
+    - name: Download Paper
+      run: |
+        curl -L -o server.jar https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/499/downloads/paper-1.20.4-499.jar
+        file server.jar
+        ls -lh server.jar
 
       - name: Accept EULA
         run: |
