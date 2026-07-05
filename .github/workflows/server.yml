@@ -17,7 +17,13 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-
+      - name: Install ZeroTier
+        run: |
+          curl -s https://install.zerotier.com | sudo bash
+          sudo zerotier-cli join 48d6023c4651557b
+          sleep 15
+          sudo zerotier-cli listnetworks
+          
       - name: Download Purpur 1.20.4
         run: |
           curl -L "https://api.purpurmc.org/v2/purpur/1.20.4/latest/download" -o server.jar
