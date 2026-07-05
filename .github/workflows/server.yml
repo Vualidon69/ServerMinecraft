@@ -17,9 +17,9 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-    - name: Download Paper
+    - name: Download Purpur
       run: |
-        curl -L -o server.jar https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/499/downloads/paper-1.20.4-499.jar
+        curl -L https://api.purpurmc.org/v2/purpur/1.20.4/latest/download -o server.jar
         file server.jar
         ls -lh server.jar
 
